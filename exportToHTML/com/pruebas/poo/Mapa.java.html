@@ -1,0 +1,76 @@
+<html>
+<head>
+<title>Mapa.java</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<style type="text/css">
+.s0 { color: #cc7832;}
+.s1 { color: #a9b7c6;}
+.s2 { color: #808080;}
+.s3 { color: #629755; font-style: italic;}
+.s4 { color: #6897bb;}
+.s5 { color: #6a8759;}
+</style>
+</head>
+<body bgcolor="#2b2b2b">
+<table CELLSPACING=0 CELLPADDING=5 COLS=1 WIDTH="100%" BGCOLOR="#606060" >
+<tr><td><center>
+<font face="Arial, Helvetica" color="#000000">
+Mapa.java</font>
+</center></td></tr></table>
+<pre><span class="s0">package </span><span class="s1">com.pruebas.poo</span><span class="s0">;</span>
+
+<span class="s0">import </span><span class="s1">androidx.fragment.app.FragmentActivity</span><span class="s0">;</span>
+
+<span class="s0">import </span><span class="s1">android.os.Bundle</span><span class="s0">;</span>
+
+<span class="s0">import </span><span class="s1">com.google.android.gms.common.internal.safeparcel.SafeParcelable</span><span class="s0">;</span>
+<span class="s0">import </span><span class="s1">com.google.android.gms.maps.CameraUpdateFactory</span><span class="s0">;</span>
+<span class="s0">import </span><span class="s1">com.google.android.gms.maps.GoogleMap</span><span class="s0">;</span>
+<span class="s0">import </span><span class="s1">com.google.android.gms.maps.OnMapReadyCallback</span><span class="s0">;</span>
+<span class="s0">import </span><span class="s1">com.google.android.gms.maps.SupportMapFragment</span><span class="s0">;</span>
+<span class="s0">import </span><span class="s1">com.google.android.gms.maps.model.BitmapDescriptor</span><span class="s0">;</span>
+<span class="s0">import </span><span class="s1">com.google.android.gms.maps.model.BitmapDescriptorFactory</span><span class="s0">;</span>
+<span class="s0">import </span><span class="s1">com.google.android.gms.maps.model.LatLng</span><span class="s0">;</span>
+<span class="s0">import </span><span class="s1">com.google.android.gms.maps.model.MarkerOptions</span><span class="s0">;</span>
+<span class="s0">import </span><span class="s1">com.google.android.gms.maps.model.PolylineOptions</span><span class="s0">;</span>
+
+<span class="s0">public class </span><span class="s1">Mapa </span><span class="s0">extends </span><span class="s1">FragmentActivity </span><span class="s0">implements </span><span class="s1">OnMapReadyCallback {</span>
+
+    <span class="s0">private </span><span class="s1">GoogleMap mMap</span><span class="s0">;</span>
+
+    <span class="s1">@Override</span>
+    <span class="s0">protected void </span><span class="s1">onCreate(Bundle savedInstanceState) {</span>
+        <span class="s0">super</span><span class="s1">.onCreate(savedInstanceState)</span><span class="s0">;</span>
+        <span class="s1">setContentView(R.layout.activity_mapa)</span><span class="s0">;</span>
+        <span class="s2">// Obtain the SupportMapFragment and get notified when the map is ready to be used.</span>
+        <span class="s1">SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()</span>
+                <span class="s1">.findFragmentById(R.id.map)</span><span class="s0">;</span>
+        <span class="s1">mapFragment.getMapAsync(</span><span class="s0">this</span><span class="s1">)</span><span class="s0">;</span>
+    <span class="s1">}</span>
+
+    <span class="s3">/**</span>
+     <span class="s3">* Manipulates the map once available.</span>
+     <span class="s3">* This callback is triggered when the map is ready to be used.</span>
+     <span class="s3">* This is where we can add markers or lines, add listeners or move the camera. In this case,</span>
+     <span class="s3">* we just add a marker near Sydney, Australia.</span>
+     <span class="s3">* If Google Play services is not installed on the device, the user will be prompted to install</span>
+     <span class="s3">* it inside the SupportMapFragment. This method will only be triggered once the user has</span>
+     <span class="s3">* installed Google Play services and returned to the app.</span>
+     <span class="s3">*/</span>
+    <span class="s1">@Override</span>
+    <span class="s0">public void </span><span class="s1">onMapReady(GoogleMap googleMap) {</span>
+        <span class="s1">mMap = googleMap</span><span class="s0">;</span>
+
+        <span class="s2">// Add a marker in Sydney and move the camera</span>
+        <span class="s1">LatLng UN = </span><span class="s0">new </span><span class="s1">LatLng(</span><span class="s4">4.6387425</span><span class="s0">, </span><span class="s1">-</span><span class="s4">74.0852378</span><span class="s1">)</span><span class="s0">;</span>
+        <span class="s1">mMap.addMarker(</span><span class="s0">new </span><span class="s1">MarkerOptions().position(UN).title(</span><span class="s5">&quot;Universidad Nacional de Colombia&quot;</span><span class="s1">).icon(BitmapDescriptorFactory.fromResource(R.drawable.universidad)))</span><span class="s0">;</span>
+
+        <span class="s1">LatLng Bolivar = </span><span class="s0">new </span><span class="s1">LatLng(</span><span class="s4">4.5980162</span><span class="s0">,</span><span class="s1">-</span><span class="s4">74.0760807</span><span class="s1">)</span><span class="s0">;</span>
+        <span class="s1">mMap.addMarker(</span><span class="s0">new </span><span class="s1">MarkerOptions().position(Bolivar).title(</span><span class="s5">&quot;Plaza de Bolivar&quot;</span><span class="s1">))</span><span class="s0">;</span>
+
+        <span class="s1">LatLng Bogota = </span><span class="s0">new </span><span class="s1">LatLng(</span><span class="s4">4.6533326</span><span class="s0">,</span><span class="s1">-</span><span class="s4">74.083652</span><span class="s1">)</span><span class="s0">;</span>
+        <span class="s1">mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(Bogota</span><span class="s0">,</span><span class="s4">10</span><span class="s1">))</span><span class="s0">;</span>
+    <span class="s1">}</span>
+<span class="s1">}</span></pre>
+</body>
+</html>
